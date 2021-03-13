@@ -7,7 +7,9 @@ namespace _2DAdventure
         static void Main(string[] args)
         {
             // Declare settings
-            int gridWidth = 60; // Max X119 Y27
+            Console.Title = "2DAdventure";
+
+            int gridWidth = 40; // Max X118 Y26
             int gridHeight = 20;
             int playerX = 0;
             int playerY = 0;
@@ -25,10 +27,47 @@ namespace _2DAdventure
             Random rand = new Random();
             int color = rand.Next(1, 4);
 
+
+
+            void Setup()
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("2DAdventure");
+
+                Console.ForegroundColor = ConsoleColor.White;
+
+                void SizeInput()
+                {
+                    Console.WriteLine("Enter width of world (Max 118, min 1) - Warning: Higher = slower!");
+                    string setupWidth = Console.ReadLine();
+                    gridWidth = int.Parse(setupWidth);
+
+                    Console.WriteLine("Enter height of world (Max 26, min 1) - Warning: Higher = slower!");
+                    string setupHeight = Console.ReadLine();
+                    gridHeight = int.Parse(setupHeight);
+
+                    if (gridWidth > 118 || gridWidth < 1 || gridHeight > 26 || gridHeight < 1)
+                    {
+                        Console.WriteLine("Invalid size!");
+                        SizeInput();
+                    }
+                    else
+                    {
+                        maxPlayerX = gridWidth - 1;
+                        maxPlayerY = gridHeight - 1;
+                        maxGridWidth = gridWidth + 1;
+                        maxGridHeight = gridHeight + 1;
+
+                        Grid();
+                    }
+                }
+                
+                SizeInput();
+            }
+
             void Grid()
             {
                 // ▀▄█▌▐░▒▓
-
 
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.White;
@@ -204,7 +243,7 @@ namespace _2DAdventure
             }
 
             // Start the app/grid
-            Grid();
+            Setup();
         }
     }
 }
