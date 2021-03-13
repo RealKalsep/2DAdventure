@@ -169,6 +169,7 @@ namespace _2DAdventure
                                     playerY = 0;
                                     chunkX = 0;
                                     chunkY = 0;
+                                    steps = 0;
                                     Grid();
                                     break;
 
