@@ -15,7 +15,7 @@
 ### How to use:
  1. Compile with Visual Studio 2019 or download a release
  2. [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework) is required to run
- 3. If that does not work, try [.NET Core](https://dotnet.microsoft.com/download)
+ 3. If that does not work, try [.NET Core](https://dotnet.microsoft.com/download) - use the LTS runtime version
 
 #### Developer Info
  * Feel free to fork.
