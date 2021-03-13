@@ -23,6 +23,7 @@ namespace _2DAdventure
             int maxGridWidth = gridWidth + 1;
             int maxGridHeight = gridHeight + 1;
             int steps = 0;
+            int totalSteps = 0;
             bool justStarted = true;
 
             string validKeys = "Valid input: W, A, S, D, R";
@@ -46,17 +47,17 @@ namespace _2DAdventure
                     Console.WriteLine("Enter height of world (Max 26, min 1) - Warning: Higher = slower!");
                     gridHeight = Convert.ToInt32(Console.ReadLine());
 
-                    Console.WriteLine("Enter color (1=green, 2=red, 3-blue, 4=random");
+                    Console.WriteLine("Enter color (1=red, 2=green, 3-blue, 4=random)");
                     color = Convert.ToInt32(Console.ReadLine());
 
                     switch(color)
                     {
                         case 1:
-                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.ForegroundColor = ConsoleColor.Red;
                             break;
 
                         case 2:
-                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.ForegroundColor = ConsoleColor.Green;
                             break;
 
                         case 3:
@@ -101,7 +102,7 @@ namespace _2DAdventure
                 Console.ForegroundColor = ConsoleColor.White;
 
                 // Position
-                Console.WriteLine($"Position: {playerX} {playerY}   Chunk: {chunkX} {chunkY}   Steps: {steps}");
+                Console.WriteLine($"Position: {playerX} {playerY}   Chunk: {chunkX} {chunkY}   Steps: {steps}   Total steps: {totalSteps}");
 
                 // Draw grid
                 for (int i = 0; i < maxGridHeight; i++)
@@ -122,11 +123,11 @@ namespace _2DAdventure
                             switch(color)
                             {
                                 case 1:
-                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.ForegroundColor = ConsoleColor.Red;
                                     break;
 
                                 case 2:
-                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.ForegroundColor = ConsoleColor.Green;
                                     break;
 
                                 case 3:
@@ -165,11 +166,13 @@ namespace _2DAdventure
                             Console.WriteLine("Entering new chunk");
                             playerY = gridHeight;
                             steps++;
+                            totalSteps++;
                             chunkY--;
                             Grid();
                         } else {
                             playerY--;
                             steps++;
+                            totalSteps++;
                         }
 
                         Grid();
@@ -181,11 +184,13 @@ namespace _2DAdventure
                             Console.WriteLine("Entering new chunk");
                             playerX = gridWidth;
                             steps++;
+                            totalSteps++;
                             chunkX--;
                             Grid();
                         } else {
                             playerX--;
                             steps++;
+                            totalSteps++;
                         }
 
                         Grid();
@@ -197,11 +202,13 @@ namespace _2DAdventure
                             Console.WriteLine("Entering new chunk");
                             playerY = 0;
                             steps++;
+                            totalSteps++;
                             chunkY++;
                             Grid();
                         } else {
                             playerY++;
                             steps++;
+                            totalSteps++;
                         }
 
                         Grid();
@@ -213,11 +220,13 @@ namespace _2DAdventure
                             Console.WriteLine("Entering new chunk");
                             playerX = 0;
                             steps++;
+                            totalSteps++;
                             chunkX++;
                             Grid();
                         } else {
                             playerX++;
                             steps++;
+                            totalSteps++;
                         }
 
                         Grid();
