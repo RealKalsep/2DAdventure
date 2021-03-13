@@ -15,6 +15,7 @@ namespace _2DAdventure
             int playerY = 0;
             int chunkX = 0;
             int chunkY = 0;
+            int color;
 
             // Do not change
             int maxPlayerX = gridWidth - 1;
@@ -27,7 +28,6 @@ namespace _2DAdventure
             string validKeys = "Valid input: W, A, S, D, R";
 
             Random rand = new Random();
-            int color = rand.Next(1, 4);
 
 
 
@@ -41,12 +41,37 @@ namespace _2DAdventure
                 void SizeInput()
                 {
                     Console.WriteLine("Enter width of world (Max 118, min 1) - Warning: Higher = slower!");
-                    string setupWidth = Console.ReadLine();
-                    gridWidth = int.Parse(setupWidth);
+                    gridWidth = Convert.ToInt32(Console.ReadLine());
 
                     Console.WriteLine("Enter height of world (Max 26, min 1) - Warning: Higher = slower!");
-                    string setupHeight = Console.ReadLine();
-                    gridHeight = int.Parse(setupHeight);
+                    gridHeight = Convert.ToInt32(Console.ReadLine());
+
+                    Console.WriteLine("Enter color (1=green, 2=red, 3-blue, 4=random");
+                    color = Convert.ToInt32(Console.ReadLine());
+
+                    switch(color)
+                    {
+                        case 1:
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            break;
+
+                        case 2:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            break;
+
+                        case 3:
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            break;
+
+                        case 4:
+                            color = rand.Next(1, 4);
+                            break;
+
+                        default:
+                            Console.WriteLine("Invalid color!");
+                            SizeInput();
+                            break;
+                    }
 
                     if (gridWidth > 118 || gridWidth < 1 || gridHeight > 26 || gridHeight < 1)
                     {
@@ -130,13 +155,11 @@ namespace _2DAdventure
 
             void KeyInput()
             {
-                string key = Console.ReadLine();
+                string key = Console.ReadLine().ToLower();
 
                 switch(key)
                 {
-                    // Need to find a way to do it in one line instead of two lines
                     case "w":
-                    case "W":
                         if (playerY < 1)
                         {
                             Console.WriteLine("Entering new chunk");
@@ -153,7 +176,6 @@ namespace _2DAdventure
                         break;
 
                     case "a":
-                    case "A":
                         if (playerX < 1)
                         {
                             Console.WriteLine("Entering new chunk");
@@ -170,7 +192,6 @@ namespace _2DAdventure
                         break;
 
                     case "s":
-                    case "S":
                         if (playerY > maxPlayerY)
                         {
                             Console.WriteLine("Entering new chunk");
@@ -187,7 +208,6 @@ namespace _2DAdventure
                         break;
 
                     case "d":
-                    case "D":
                         if (playerX > maxPlayerX)
                         {
                             Console.WriteLine("Entering new chunk");
@@ -204,16 +224,14 @@ namespace _2DAdventure
                         break;
 
                     case "r":
-                    case "R":
                         void SureInput()
                         {
                             Console.WriteLine("Are you sure you want to respawn? Input: Y, N");
-                            string sure = Console.ReadLine();
+                            string sure = Console.ReadLine().ToLower();
 
                             switch (sure)
                             {
                                 case "y":
-                                case "Y":
                                     playerX = 0;
                                     playerY = 0;
                                     chunkX = 0;
@@ -223,7 +241,6 @@ namespace _2DAdventure
                                     break;
 
                                 case "n":
-                                case "N":
                                     Grid();
                                     break;
 
