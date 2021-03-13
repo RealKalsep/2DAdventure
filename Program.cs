@@ -11,6 +11,8 @@ namespace _2DAdventure
             int gridHeight = 20;
             int playerX = 0;
             int playerY = 0;
+            int chunkX = 0;
+            int chunkY = 0;
 
             // Do not change
             int maxPlayerX = gridWidth - 1;
@@ -32,7 +34,7 @@ namespace _2DAdventure
                 Console.ForegroundColor = ConsoleColor.White;
 
                 // Position
-                Console.WriteLine("Position: " + playerX.ToString() + " " + playerY.ToString() + "   Steps: " + steps);
+                Console.WriteLine($"Position: {playerX} {playerY}   Chunk: {chunkX} {chunkY}   Steps: {steps}");
 
                 // Draw grid
                 for (int i = 0; i < maxGridHeight; i++)
@@ -49,6 +51,7 @@ namespace _2DAdventure
                         }
                         else
                         {
+                            // Background
                             switch(color)
                             {
                                 case 1:
@@ -92,7 +95,11 @@ namespace _2DAdventure
                     case "w":
                         if (playerY < 1)
                         {
-                            Console.WriteLine("Out of bounds");
+                            Console.WriteLine("Entering new chunk");
+                            playerY = gridHeight;
+                            steps++;
+                            chunkY--;
+                            Grid();
                         } else {
                             playerY--;
                             steps++;
@@ -104,7 +111,11 @@ namespace _2DAdventure
                     case "a":
                         if (playerX < 1)
                         {
-                            Console.WriteLine("Out of bounds");
+                            Console.WriteLine("Entering new chunk");
+                            playerX = gridWidth;
+                            steps++;
+                            chunkX--;
+                            Grid();
                         } else {
                             playerX--;
                             steps++;
@@ -116,7 +127,11 @@ namespace _2DAdventure
                     case "s":
                         if (playerY > maxPlayerY)
                         {
-                            Console.WriteLine("Out of bounds");
+                            Console.WriteLine("Entering new chunk");
+                            playerY = 0;
+                            steps++;
+                            chunkY++;
+                            Grid();
                         } else {
                             playerY++;
                             steps++;
@@ -128,7 +143,11 @@ namespace _2DAdventure
                     case "d":
                         if (playerX > maxPlayerX)
                         {
-                            Console.WriteLine("Out of bounds");
+                            Console.WriteLine("Entering new chunk");
+                            playerX = 0;
+                            steps++;
+                            chunkX++;
+                            Grid();
                         } else {
                             playerX++;
                             steps++;
@@ -137,8 +156,39 @@ namespace _2DAdventure
                         Grid();
                         break;
 
+                    case "r":
+                        void SureInput()
+                        {
+                            Console.WriteLine("Are you sure you want to respawn? Input: Y, N");
+                            string sure = Console.ReadLine();
+
+                            switch (sure)
+                            {
+                                case "y":
+                                    playerX = 0;
+                                    playerY = 0;
+                                    chunkX = 0;
+                                    chunkY = 0;
+                                    Grid();
+                                    break;
+
+                                case "n":
+                                    Grid();
+                                    break;
+
+                                default:
+                                    Console.WriteLine("Valid input: Y, N");
+                                    SureInput();
+                                    break;
+
+                            }
+                        }
+
+                        SureInput();
+                        break;
+
                     default:
-                        Console.WriteLine("Valid input: W, A, S, D");
+                        Console.WriteLine("Valid input: W, A, S, D, R");
                         KeyInput();
                         break;
                 }
