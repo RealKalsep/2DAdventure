@@ -7,7 +7,7 @@ namespace _2DAdventure
         static void Main(string[] args)
         {
             // Declare settings
-            int gridWidth = 40;
+            int gridWidth = 60; // Max X119 Y27
             int gridHeight = 20;
             int playerX = 0;
             int playerY = 0;
@@ -18,6 +18,10 @@ namespace _2DAdventure
             int maxGridWidth = gridWidth + 1;
             int maxGridHeight = gridHeight + 1;
             int steps = 0;
+            bool justStarted = true;
+
+            Random rand = new Random();
+            int color = rand.Next(1, 4);
 
             void Grid()
             {
@@ -28,7 +32,7 @@ namespace _2DAdventure
                 Console.ForegroundColor = ConsoleColor.White;
 
                 // Position
-                Console.WriteLine(playerX.ToString() + " " + playerY.ToString() + "   Steps: " + steps);
+                Console.WriteLine("Position: " + playerX.ToString() + " " + playerY.ToString() + "   Steps: " + steps);
 
                 // Draw grid
                 for (int i = 0; i < maxGridHeight; i++)
@@ -39,12 +43,27 @@ namespace _2DAdventure
                         // Checks player position
                         if (ib == playerX && i == playerY)
                         {
+                            // Player
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.Write("█");
                         }
                         else
                         {
-                            Console.ForegroundColor = ConsoleColor.Green;
+                            switch(color)
+                            {
+                                case 1:
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    break;
+
+                                case 2:
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    break;
+
+                                case 3:
+                                    Console.ForegroundColor = ConsoleColor.Blue;
+                                    break;
+                            }
+                            
                             Console.Write("█");
                         }
                     }
@@ -52,6 +71,13 @@ namespace _2DAdventure
                     // Ends the grid
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("");
+                }
+
+
+                if (justStarted == true)
+                {
+                    Console.WriteLine("Valid input: W, A, S, D");
+                    justStarted = false;
                 }
 
                 KeyInput();
