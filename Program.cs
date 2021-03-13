@@ -24,6 +24,8 @@ namespace _2DAdventure
             int steps = 0;
             bool justStarted = true;
 
+            string validKeys = "Valid input: W, A, S, D, R";
+
             Random rand = new Random();
             int color = rand.Next(1, 4);
 
@@ -58,6 +60,7 @@ namespace _2DAdventure
                         maxGridWidth = gridWidth + 1;
                         maxGridHeight = gridHeight + 1;
 
+                        // Start drawing the grid
                         Grid();
                     }
                 }
@@ -118,7 +121,7 @@ namespace _2DAdventure
 
                 if (justStarted == true)
                 {
-                    Console.WriteLine("Valid input: W, A, S, D, R");
+                    Console.WriteLine(validKeys);
                     justStarted = false;
                 }
 
@@ -236,13 +239,13 @@ namespace _2DAdventure
                         break;
 
                     default:
-                        Console.WriteLine("Valid input: W, A, S, D, R");
+                        Console.WriteLine(validKeys);
                         KeyInput();
                         break;
                 }
             }
 
-            // Start the app/grid
+            // Start the world setup
             Setup();
         }
     }
