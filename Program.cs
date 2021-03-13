@@ -21,6 +21,9 @@ namespace _2DAdventure
             void Grid()
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.White;
+
+                // Position
                 Console.WriteLine(playerX.ToString() + " " + playerY.ToString());
 
                 // Draw grid
@@ -32,10 +35,12 @@ namespace _2DAdventure
                         // Checks player position
                         if (ib == playerX && i == playerY)
                         {
+                            Console.ForegroundColor = ConsoleColor.Green;
                             Console.Write("#");
                         }
                         else
                         {
+                            Console.ForegroundColor = ConsoleColor.Blue;
                             Console.Write(".");
                         }
                     }
