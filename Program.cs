@@ -79,7 +79,7 @@ namespace _2DAdventure
 
                 if (justStarted == true)
                 {
-                    Console.WriteLine("Valid input: W, A, S, D");
+                    Console.WriteLine("Valid input: W, A, S, D, R");
                     justStarted = false;
                 }
 
@@ -92,7 +92,9 @@ namespace _2DAdventure
 
                 switch(key)
                 {
+                    // Need to find a way to do it in one line instead of two lines
                     case "w":
+                    case "W":
                         if (playerY < 1)
                         {
                             Console.WriteLine("Entering new chunk");
@@ -109,6 +111,7 @@ namespace _2DAdventure
                         break;
 
                     case "a":
+                    case "A":
                         if (playerX < 1)
                         {
                             Console.WriteLine("Entering new chunk");
@@ -125,6 +128,7 @@ namespace _2DAdventure
                         break;
 
                     case "s":
+                    case "S":
                         if (playerY > maxPlayerY)
                         {
                             Console.WriteLine("Entering new chunk");
@@ -141,6 +145,7 @@ namespace _2DAdventure
                         break;
 
                     case "d":
+                    case "D":
                         if (playerX > maxPlayerX)
                         {
                             Console.WriteLine("Entering new chunk");
@@ -157,6 +162,7 @@ namespace _2DAdventure
                         break;
 
                     case "r":
+                    case "R":
                         void SureInput()
                         {
                             Console.WriteLine("Are you sure you want to respawn? Input: Y, N");
@@ -165,6 +171,7 @@ namespace _2DAdventure
                             switch (sure)
                             {
                                 case "y":
+                                case "Y":
                                     playerX = 0;
                                     playerY = 0;
                                     chunkX = 0;
@@ -174,6 +181,7 @@ namespace _2DAdventure
                                     break;
 
                                 case "n":
+                                case "N":
                                     Grid();
                                     break;
 
