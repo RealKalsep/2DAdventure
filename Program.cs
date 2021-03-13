@@ -17,14 +17,18 @@ namespace _2DAdventure
             int maxPlayerY = gridHeight - 1;
             int maxGridWidth = gridWidth + 1;
             int maxGridHeight = gridHeight + 1;
+            int steps = 0;
 
             void Grid()
             {
+                // ▀▄█▌▐░▒▓
+
+
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.White;
 
                 // Position
-                Console.WriteLine(playerX.ToString() + " " + playerY.ToString());
+                Console.WriteLine(playerX.ToString() + " " + playerY.ToString() + "   Steps: " + steps);
 
                 // Draw grid
                 for (int i = 0; i < maxGridHeight; i++)
@@ -35,17 +39,18 @@ namespace _2DAdventure
                         // Checks player position
                         if (ib == playerX && i == playerY)
                         {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.Write("#");
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write("█");
                         }
                         else
                         {
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.Write(".");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write("█");
                         }
                     }
 
                     // Ends the grid
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("");
                 }
 
@@ -64,6 +69,7 @@ namespace _2DAdventure
                             Console.WriteLine("Out of bounds");
                         } else {
                             playerY--;
+                            steps++;
                         }
 
                         Grid();
@@ -75,6 +81,7 @@ namespace _2DAdventure
                             Console.WriteLine("Out of bounds");
                         } else {
                             playerX--;
+                            steps++;
                         }
 
                         Grid();
@@ -86,6 +93,7 @@ namespace _2DAdventure
                             Console.WriteLine("Out of bounds");
                         } else {
                             playerY++;
+                            steps++;
                         }
 
                         Grid();
@@ -97,6 +105,7 @@ namespace _2DAdventure
                             Console.WriteLine("Out of bounds");
                         } else {
                             playerX++;
+                            steps++;
                         }
 
                         Grid();
