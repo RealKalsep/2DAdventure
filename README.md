@@ -11,6 +11,7 @@
  * Respawning
  * Steps
  * Random world colors
+ * World customizing
 
 ### How to use:
  1. Compile with Visual Studio 2019 or download a release
