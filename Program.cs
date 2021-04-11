@@ -5,7 +5,7 @@ namespace _2DAdventure
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             // Declare settings
             Console.Title = "2DAdventure";
@@ -18,6 +18,7 @@ namespace _2DAdventure
             //bool 
             int objectX = 4;
             int objectY = 5;
+            bool _deadly = false;
 
             int chunkX = 0;
             int chunkY = 0;
@@ -37,6 +38,13 @@ namespace _2DAdventure
             Random rand = new Random();
 
 
+            void createObject(int oX, int oY, bool deadly)
+            {
+                objectX = oX;
+                objectY = oY;
+                deadly = _deadly;
+            }
+
 
             void Setup()
             {
@@ -44,6 +52,8 @@ namespace _2DAdventure
                 Console.WriteLine("2DAdventure");
 
                 Console.ForegroundColor = ConsoleColor.White;
+
+                createObject(6, 4, true);
 
                 void SizeInput()
                 {
@@ -170,19 +180,22 @@ namespace _2DAdventure
 
             void Touching()
             {
+                // Needs a more-objects rewrite
                 if (playerX == objectX && playerY == objectY)
                 {
-                    // Soon implementing object properties (like "deadly")
-                    playerX = 0;
-                    playerY = 0;
-                    chunkX = 0;
-                    chunkY = 0;
-                    steps = 0;
+                    if (_deadly == true)
+                    {
+                        playerX = 0;
+                        playerY = 0;
+                        chunkX = 0;
+                        chunkY = 0;
+                        steps = 0;
 
-                    Console.WriteLine("You died.");
-                    Thread.Sleep(2000);
+                        Console.WriteLine("You died.");
+                        Thread.Sleep(2000);
 
-                    Grid();
+                        Grid();
+                    }
                 }
             }
 
